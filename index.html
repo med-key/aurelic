@@ -3,7 +3,7 @@
 <head>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <meta charset="UTF-8" />
-  <title>Soft Gradient Cursor Balls</title>
+  <title>Aurelic</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     * {
@@ -30,56 +30,75 @@
         inset -12px -12px 30px rgba(0, 0, 0, 0.5),
         inset 8px 8px 20px rgba(255, 255, 255, 0.1);
     }
-      .glass-card {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 6rem 8rem;
-  border-radius: 2rem;
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 12px 40px rgba(31, 38, 135, 0.4);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  text-align: center;
-  color: white;
-  z-index: 10000;
-  cursor: pointer;
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.95);
-  transition: all 0.6s ease;
-  animation: fadeInZoom 1.5s ease forwards 0.5s;
-  font-family: 'Poppins', sans-serif;
-}
+
+    
+    .glass-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 6rem 8rem;
+    border-radius: 2rem;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 12px 40px rgba(31, 38, 135, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    color: white;
+    z-index: 10000;
+    cursor: pointer;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.95);
+    transition: all 0.6s ease;
+    animation: fadeInZoom 1.5s ease forwards 0.5s;
+    font-family: 'Poppins', sans-serif;
+    }
 
     .glass-card .brand {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      letter-spacing: 2px;
+    font-size: 5rem;
+    margin-bottom: 1rem;
     }
 
     .glass-card .subtext {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.2rem;
-      opacity: 0.8;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    opacity: 0.5;
     }
     
+    @keyframes subtlePulse {
+    0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.1);}
+    50% {
+    transform: scale(1.03);
+    opacity: 0.5;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+    }
+  }
 
+    .subtext {
+    animation: subtlePulse 3.5s ease-in-out infinite;
+    }
+
+   
     @keyframes shrinkAndFade {
-  to {
+    to {
     opacity: 0;
     transform: scale(0.2);
+    }
   }
-}
 
 
     @keyframes fadeInZoom {
-      to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-      }
+    to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
     }
+  }
+
+    
 </style>
 </head>
 <body>
@@ -90,36 +109,34 @@
   let mouseY = window.innerHeight / 2;
   let lastSpawn = 0;
 
- const gradientPresets = [
+   const gradientPresets = [
   ['#1D2671', '#C33764'],     // Deep Sapphire to Magenta
   ['#3A0CA3', '#4361EE'],     // Galactic Indigo to Royal Blue
   ['#4E54C8', '#8F94FB'],     // Periwinkle Purple to Icy Blue
   ['#7209B7', '#F72585'],     // Cosmic Violet to Nebula Pink
   ['#6C5CE7', '#00B894'],     // Ultra Purple to Metallic Teal
   ['#5F0A87', '#A4508B'],     // Supernova Plum to Metallic Mauve
-  ['#0F2027', '#2C5364'],     // Deep Sea Blue to Dusty Cyan (No black here — very dark blue)
-  ['#283E51', '#485563'],     // Royal Steel Blue to Space Cadet (rich, dark blue metallics)
+  ['#0F2027', '#2C5364'],     // Deep Sea Blue to Dusty Cyan
+  ['#283E51', '#485563'],     // Royal Steel Blue to Space Cadet
   ['#3F2B96', '#A8C0FF'],     // Royal Purple to Frost Blue
   ['#2B5876', '#4E4376']      // Navy Blue to Soft Purple Steel
-];
-
-
+  ];
 
   document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
+  mouseX = e.clientX;
+  mouseY = e.clientY;
   });
 
   function getRandomGradient() {
-    const usedGradients = new Set();
-let availableGradients = [...gradientPresets];
-if (availableGradients.length === 0) availableGradients = [...gradientPresets];
-const index = Math.floor(Math.random() * availableGradients.length);
-const colors = availableGradients.splice(index, 1)[0];
-    return `linear-gradient(135deg, ${colors.join(', ')})`;
+  const usedGradients = new Set();
+  let availableGradients = [...gradientPresets];
+  if (availableGradients.length === 0) availableGradients = [...gradientPresets];
+  const index = Math.floor(Math.random() * availableGradients.length);
+  const colors = availableGradients.splice(index, 1)[0];
+  return `linear-gradient(135deg, ${colors.join(', ')})`;
   }
 
-  function createBall(x, y) {
+    function createBall(x, y) {
     const el = document.createElement('div');
     el.classList.add('ball');
 
@@ -157,14 +174,14 @@ const colors = availableGradients.splice(index, 1)[0];
       if (balls.length >= maxBalls) {
         const oldest = balls.shift();
         oldest.el.style.animation = 'shrinkAndFade 3s ease forwards';
-setTimeout(() => oldest.el.remove(), 500);
+        setTimeout(() => oldest.el.remove(), 500);
 
       }
       balls.push(createBall(mouseX, mouseY));
       lastSpawn = now;
     }
 
-    balls.forEach((b, i) => {
+      balls.forEach((b, i) => {
       b.life++;
 
       const dx = mouseX - b.x;
