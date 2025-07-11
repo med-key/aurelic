@@ -228,6 +228,12 @@
       }, 800);
     });
 
+    document.querySelectorAll('img').forEach(img => {
+      img.onerror = function () {
+        this.style.display = 'none';
+    };
+    });
+
     const balls = [];
     const maxBalls = 4;
     let mouseX = window.innerWidth / 2;
