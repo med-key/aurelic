@@ -148,6 +148,16 @@
       width: auto;
     }
 
+    .fallback-text {
+      display: none;
+      color: white;
+      font-size: 2rem;
+    }
+
+    img[style*="display: none"] + .fallback-text {
+      display: inline-block;
+    }
+    
     /* Footer */
     .footer {
       position: fixed;
@@ -196,6 +206,7 @@
     <div class="brand">
       <img src="aurelic-logo.png" alt="Aurelic" class="brand-image" />
       <noscript>Aurelic</noscript></div>
+    <span class="fallback-text">Aurelic</span>
     <div class="subtext">Press to continue</div>
   </div>
 
