@@ -1,78 +1,173 @@
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+    }
 
-html, body {
-  height: 100%;
-  width: 100%;
-  font-family: 'Helvetica Neue', sans-serif;
-  background: #fff;
-  color: #000;
-  scroll-behavior: smooth;
-}
+    /* Ball Background Effect */
+    .ball {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(circle at 30% 30%, white, rgba(255,0,150,0.8));
+      box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.4),
+        inset -12px -12px 30px rgba(0, 0, 0, 0.5),
+        inset 8px 8px 20px rgba(255, 255, 255, 0.1);
+    }
 
-body {
-  overflow-x: hidden;
-}
+    /* Landing Card */
+    .landing {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.95);
+      padding: 6rem 8rem;
+      border-radius: 2rem;
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 12px 40px rgba(31, 38, 135, 0.4);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+      color: white;
+      z-index: 100;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.6s ease;
+      animation: fadeInZoom 1.5s ease forwards 0.5s;
+    }
+    .landing.outro {
+      animation: cardOutro 0.8s ease forwards;
+      pointer-events: none;
+    }
+    .landing .brand {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+    }
+    .landing .subtext {
+      font-size: 1.2rem;
+      opacity: 0.5;
+      animation: subtlePulse 3.5s ease-in-out infinite;
+    }
 
-.section {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4rem 2rem;
-  text-align: center;
-  border-bottom: 1px solid #eee;
-}
+    /* Logo */
+    .logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 4rem;
+      color: white;
+      opacity: 0;
+      transition: all 1s ease;
+      z-index: 10000;
+      pointer-events: none;
+    }
+    .logo.active {
+      top: 10rem;
+      transform: translateX(-50%) scale(0.5);
+      opacity: 1;
+    }
 
-.centered {
-  max-width: 700px;
-}
+    /* Menu Cards */
+    .card-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      width: 80%;
+      max-width: 1000px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1000;
+      transition: opacity 1s ease;
+    }
+    .card-container.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .menu-card {
+      flex: 1;
+      height: 9rem;
+      text-align: center;
+      padding: 4rem 2rem;
+      border-radius: 1.5rem;
+      background: rgba(255, 255, 255, 0.08);
+      color: white;
+      font-size: 1.5rem;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 12px 40px rgba(31, 38, 135, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transform: rotateY(-90deg);
+      transition: transform 0.6s ease, box-shadow 0.3s ease;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+    }
+    .menu-card:hover {
+      transform: scale(1.05) rotateY(0deg);
+      box-shadow: 0 0 20px rgba(255,255,255,0.4);
+    }
+    .brand-image {
+      max-width: 100%;
+      height: auto;
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+    }
+    .logo-image {
+      height: 4rem;
+      width: auto;
+    }
 
-h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  font-weight: 700;
-}
+    /* Footer */
+    .footer {
+      position: fixed;
+      bottom: 1rem;
+      width: 100%;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.9rem;
+      z-index: 10;
+      pointer-events: none;
+    }
 
-h2 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-}
+    /* Animations */
+    @keyframes fadeInZoom {
+      to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+    @keyframes cardOutro {
+      to { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    }
+    @keyframes cardFlip {
+      from { transform: rotateY(-90deg); opacity: 0; }
+      to { transform: rotateY(0deg); opacity: 1; }
+    }
+    @keyframes subtlePulse {
+      0%, 100% { transform: scale(1); opacity: 0.3; text-shadow: 0 0 6px rgba(255, 255, 255, 0.1); }
+      50% { transform: scale(1.03); opacity: 0.5; text-shadow: 0 0 12px rgba(255, 255, 255, 0.3); }
+    }
+    @keyframes shrinkAndFade {
+      to { opacity: 0; transform: scale(0.2); }
+    }
 
-p {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #444;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-  border-bottom: 1px solid #000;
-  transition: 0.2s ease;
-}
-
-a:hover {
-  opacity: 0.7;
-  border-color: transparent;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  h1 {
-    font-size: 2.2rem;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  p {
-    font-size: 0.95rem;
-  }
-}
+    /* Responsive */
+    @media screen and (max-width: 768px) {
+      .landing { padding: 4rem 2rem; }
+      .brand { font-size: 3rem; }
+      .subtext { font-size: 1rem; }
+      .logo { font-size: 2rem; }
+      .card-container { flex-direction: column; gap: 1.5rem; width: 90%; }
+      .menu-card { padding: 2rem; font-size: 1.2rem; transform: rotateY(0deg); }
+      .menu-card:hover { transform: scale(1.05); }
+    }
