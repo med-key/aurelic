@@ -212,7 +212,52 @@
   </style>
 </head>
 <body>
+  <div id="loader">
+    <div class="loader-wrapper">
+      <div class="loading-ball"></div>
+      <div class="ball-shadow"></div>
+    </div>
+  </div>
+
+  <div class="landing" id="landingCard">
+    <div class="brand">Aurelic</div>
+    <div class="subtext">Press to continue</div>
+  </div>
+
+  <div class="logo" id="logoText">Aurelic</div>
+
+  <div class="card-container" id="menuCards">
+    <div class="menu-card">Portfolio</div>
+    <div class="menu-card">Store</div>
+    <div class="menu-card">Journal</div>
+  </div>
+  
+  <footer class="footer">&copy; 2025 Aurelic. All rights reserved.</footer>
+
   <script>
+    const gradientPresets = [
+      ['#1D2671', '#C33764'], ['#3A0CA3', '#4361EE'], ['#4E54C8', '#8F94FB'],
+      ['#7209B7', '#F72585'], ['#6C5CE7', '#00B894'], ['#5F0A87', '#A4508B'],
+      ['#0F2027', '#2C5364'], ['#283E51', '#485563'], ['#3F2B96', '#A8C0FF'], ['#2B5876', '#4E4376']
+    ];
+
+    const balls = [];
+    const maxBalls = 7;
+    const gravity = 0.1;
+    const friction = 0.97;
+    const attractionStrength = 0.003;
+
+    let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+
+    document.addEventListener('mousemove', e => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    function random(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
     function createBall() {
       const ball = document.createElement('div');
       ball.classList.add('ball');
@@ -225,23 +270,95 @@
       ball.style.background = `radial-gradient(circle at 30% 30%, white, ${colors.join(', ')})`;
 
       document.body.appendChild(ball);
+      
+      const padding = 20;
+const safeX = random(padding, window.innerWidth - size - padding);
+const safeY = random(padding, window.innerHeight - size - padding);
 
-      const safeX = random(0, window.innerWidth - size);
-      const safeY = random(0, window.innerHeight - size);
 
       return {
         el: ball,
-        x: safeX,
-        y: safeY,
+        x: random(0, window.innerWidth - 60),
+        y: random(0, window.innerHeight - 60),
         vx: random(-1, 1),
         vy: random(-1, 1),
         size,
         age: 0,
         life: random(150, 400),
         update() {
+          this.age++;
+          if (this.age > this.life) {
+            this.el.style.transition = 'transform 1s ease, opacity 1s ease';
+            this.el.style.opacity = '0';
+            this.el.style.transform = `translate(${this.x}px, ${this.y}px) scale(0)`;
+            setTimeout(() => this.el.remove(), 1000);
+            return false;
+          }
+
+          const dx = mouse.x - this.x;
+          const dy = mouse.y - this.y;
+          this.vx += dx * attractionStrength;
+          this.vy += dy * attractionStrength + gravity;
+
+          this.vx *= friction;
+          this.vy *= friction;
+
+          this.x += this.vx;
+          this.y += this.vy;
+
+          if (this.x < 0 || this.x > window.innerWidth - this.size) this.vx *= -1;
+          if (this.y < 0 || this.y > window.innerHeight - this.size) this.vy *= -1;
+
+          const scale = Math.max(0.5, 1 - (this.age / this.life));
+          this.el.style.transform = `translate(${this.x}px, ${this.y}px) scale(${scale})`;
+          return true;
         }
       };
     }
+
+    function animate() {
+      if (balls.length < maxBalls && Math.random() < 0.1) {
+        balls.push(createBall());
+      }
+      for (let i = balls.length - 1; i >= 0; i--) {
+        if (!balls[i].update()) balls.splice(i, 1);
+      }
+      requestAnimationFrame(animate);
+    }
+
+    setTimeout(() => {
+      const loader = document.getElementById('loader');
+      loader.style.transition = 'opacity 1s ease';
+      loader.style.opacity = '0';
+
+      setTimeout(() => {
+        loader.remove();
+
+        const landingCard = document.getElementById('landingCard');
+        landingCard.style.opacity = '1';
+        landingCard.style.transform = 'translate(-50%, -50%) scale(1)';
+
+        setTimeout(() => {
+          requestAnimationFrame(animate);
+        }, 500);
+      }, 1000);
+    }, 3000);
+
+    const landingCard = document.getElementById('landingCard');
+    const logo = document.getElementById('logoText');
+    const menuCards = document.getElementById('menuCards');
+
+    landingCard.addEventListener('click', () => {
+      landingCard.classList.add('outro');
+      setTimeout(() => {
+        landingCard.style.display = 'none';
+        logo.classList.add('active');
+        menuCards.classList.add('active');
+        document.querySelectorAll('.menu-card').forEach((card, i) => {
+          setTimeout(() => card.style.animation = 'cardFlip 0.8s ease forwards', i * 300);
+        });
+      }, 800);
+    });
   </script>
 </body>
 </html>
