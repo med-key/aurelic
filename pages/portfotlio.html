@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio | Aurelic</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .section {
+      padding: 6rem 2rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .intro {
+      text-align: center;
+      padding-top: 4rem;
+    }
+
+    .profile-container {
+      position: relative;
+      display: inline-block;
+      margin: 1.5rem auto;
+    }
+
+    .profile-pic {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 1rem; /* square with rounded corners */
+      border: 3px solid rgba(255,255,255,0.2);
+      box-shadow: 0 8px 30px rgba(255, 255, 255, 0.1);
+      transition: all 0.4s ease;
+    }
+
+    .profile-pic:hover {
+      border-radius: 2rem;
+      transform: scale(1.05);
+    }
+
+    .coffee-bubble {
+      position: absolute;
+      bottom: -20px;
+      right: -10px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.2);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      color: white;
+      white-space: nowrap;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .profile-container:hover .coffee-bubble {
+      opacity: 1;
+      transform: translateY(-10px);
+    }
+
+
+    .name {
+      font-size: 3rem;
+      margin-top: 1rem;
+    }
+
+    .about {
+      font-size: 1rem;
+      opacity: 0.7;
+      max-width: 700px;
+      margin: 1rem auto 0;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .header {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .subtext {
+      text-align: center;
+      font-size: 1.2rem;
+      opacity: 0.5;
+      margin-bottom: 3rem;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 0 5%;
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 1rem;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 12px 40px rgba(31, 38, 135, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: scale(1.03);
+    }
+
+    .project-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .project-desc {
+      font-size: 1rem;
+      opacity: 0.7;
+    }
+
+    .get-in-touch {
+      text-align: center;
+      margin-top: 4rem;
+    }
+
+    .touch-text {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.6;
+    }
+
+    .contact-button {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 0.5rem;
+      backdrop-filter: blur(5px);
+      color: white;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .contact-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .back-button {
+      position: fixed;
+      top: 2rem;
+      left: 2rem;
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      background: rgba(255,255,255,0.1);
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.3s ease;
+    }
+
+    .back-button:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    
+   #scrollTopBtn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+  font-size: 1.5rem;
+  padding: 0.6rem 1.2rem;
+  background: rgba(255, 255, 255, 0.6); /* brighter glass */
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 0.75rem;
+  backdrop-filter: blur(10px);
+  color: #000; /* black text/icon */
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.25);
+}
+
+#scrollTopBtn:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back-button">&larr; Return</a>
+
+  <!-- Intro Section -->
+ <section class="section intro">
+    <div class="profile-container">
+      <img src="your-photo.jpg" alt="Your Photo" class="profile-pic">
+      <div class="coffee-bubble">Buy me a coffee?</div>
+    </div>
+    <div class="name">Aurelic</div>
+    <div class="about">
+      Hello! I'm a designer and creative developer with a soft spot for romantic, elegant interfaces. I love blending visuals with emotion — and I build experiences that feel as beautiful as they function.
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section class="section">
+    <div class="header">Portfolio</div>
+    <div class="subtext">Selected works and experiments</div>
+    <div class="portfolio-grid">
+      <div class="project-card">
+        <div class="project-title">Project One</div>
+        <div class="project-desc">A short description about this project, what it is, or what tools were used.</div>
+      </div>
+      <div class="project-card">
+        <div class="project-title">Project Two</div>
+        <div class="project-desc">Another creative piece. You can describe it and link to a demo or repo if needed.</div>
+      </div>
+      <!-- Add more cards here -->
+    </div>
+  </section>
+
+  <!-- Get in Touch Section -->
+  <section class="section get-in-touch">
+    <div class="header">Get in Touch</div>
+    <div class="touch-text">Want to collaborate or just say hello?</div>
+    <a href="mailto:youremail@example.com" class="contact-button">Say Hello</a>
+  </section>
+
+  <button id="scrollTopBtn" title="Go to top">↑</button>
+
+  <script>
+  const scrollTopBtn = document.getElementById("scrollTopBtn");
+  const backButton = document.querySelector(".back-button");
+
+  window.onscroll = function () {
+    // Show scroll-to-top button after 200px
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+      scrollTopBtn.style.opacity = "1";
+      scrollTopBtn.style.pointerEvents = "auto";
+      backButton.style.opacity = "0"; // Hide Return button
+    } else {
+      scrollTopBtn.style.opacity = "0";
+      scrollTopBtn.style.pointerEvents = "none";
+      backButton.style.opacity = "1"; // Show Return button
+    }
+  };
+
+  scrollTopBtn.onclick = function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+</script>
+
+</body>
+</html>
