@@ -21,6 +21,18 @@
       scroll-behavior: smooth;
       overflow-x: hidden;
     }
+    
+    body {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    body.fade-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
 
     a {
       color: inherit;
@@ -222,7 +234,7 @@
   <!-- Intro Section -->
    <section class="section intro">
     <div class="profile-container">
-      <img src="assets/Profile.jpg" alt="Your Photo" class="profile-pic">
+      <img src="../assets/Profile.jpg" alt="Your Photo" class="profile-pic">
       <div class="coffee-bubble">Buy me a coffee?</div>
     </div>
     <div class="name">Aurelic</div>
@@ -252,31 +264,15 @@
   <section class="section get-in-touch">
     <div class="header">Get in Touch</div>
     <div class="touch-text">Want to collaborate or just say hello?</div>
-    <a href="mailto:youremail@example.com" class="contact-button">Say Hello</a>
+    <a href="kamiliashaffa@gmail.com" class="contact-button">Say Hello</a>
   </section>
 
   <button id="scrollTopBtn" title="Go to top">↑</button>
 
   <script>
-  const scrollTopBtn = document.getElementById("scrollTopBtn");
-  const backButton = document.querySelector(".back-button");
-
-  window.onscroll = function () {
-    // Show scroll-to-top button after 200px
-    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-      scrollTopBtn.style.opacity = "1";
-      scrollTopBtn.style.pointerEvents = "auto";
-      backButton.style.opacity = "0"; // Hide Return button
-    } else {
-      scrollTopBtn.style.opacity = "0";
-      scrollTopBtn.style.pointerEvents = "none";
-      backButton.style.opacity = "1"; // Show Return button
-    }
-  };
-
-  scrollTopBtn.onclick = function () {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  window.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.add('fade-in');
+  });
 </script>
 
 </body>
