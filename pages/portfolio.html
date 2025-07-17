@@ -57,8 +57,8 @@
     }
 
     .profile-pic {
-      width: 160px;
-      height: 160px;
+      width: 360px;
+      height: 360px;
       object-fit: cover;
       border-radius: 1rem; /* square with rounded corners */
       border: 3px solid rgba(255,255,255,0.2);
@@ -200,31 +200,6 @@
       background: rgba(255,255,255,0.2);
     }
     
-   #scrollTopBtn {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      z-index: 999;
-      font-size: 1.5rem;
-      padding: 0.6rem 1.2rem;
-      background: rgba(255, 255, 255, 0.6); 
-      border: 1px solid rgba(255,255,255,0.3);
-      border-radius: 0.75rem;
-      backdrop-filter: blur(10px);
-      color: #FFF;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      opacity: 0;
-      pointer-events: none;
-      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.25);
-    }
-
-  #scrollTopBtn:hover {
-    background: rgba(255, 255, 255, 0.8);
-  }
-
-
   </style>
 </head>
 <body>
@@ -234,12 +209,14 @@
   <!-- Intro Section -->
    <section class="section intro">
     <div class="profile-container">
-      <img src="../assets/Profile.jpg" alt="Your Photo" class="profile-pic">
-      <div class="coffee-bubble">Buy me a coffee?</div>
+      <a href="https://ko-fi.com/aurelic" target="_blank">
+  <img class="profile-pic" src="../assets/profile.jpg" alt="My Photo" />
+</a>
+      <div class="coffee-bubble">Buy me a matcha 🍵?</div>
     </div>
     <div class="name">Aurelic</div>
     <div class="about">
-      Hello! I'm a designer and creative developer with a soft spot for romantic, elegant interfaces. I love blending visuals with emotion — and I build experiences that feel as beautiful as they function.
+      Hello! I'm a frontend engineer driven by a deep love for design and technology — translating ideas into seamless, interactive stories.
     </div>
   </section>
 
@@ -264,10 +241,8 @@
   <section class="section get-in-touch">
     <div class="header">Get in Touch</div>
     <div class="touch-text">Want to collaborate or just say hello?</div>
-    <a href="kamiliashaffa@gmail.com" class="contact-button">Say Hello</a>
+    <a href="aurelic.design@gmail.com" class="contact-button">Say Hello 👋</a>
   </section>
-
-  <button id="scrollTopBtn" title="Go to top">↑</button>
 
   <script>
   window.addEventListener('DOMContentLoaded', () => {
