@@ -311,6 +311,7 @@
   <footer class="footer">Designed and Developed by Aurelic.</footer>
 
   <script>
+    
     const landingCard = document.getElementById('landingCard');
     const logo = document.getElementById('logoText');
     const menuCards = document.getElementById('menuCards');
@@ -419,6 +420,13 @@
       }
       requestAnimationFrame(animate);
     }
+
+    function transitionToPage(href) {
+        document.body.classList.add('fade-out');
+        setTimeout(() => {
+          window.location.href = href;
+        }, 500);
+      }
     
       setTimeout(() => {
         const loader = document.getElementById('loader');
@@ -437,13 +445,6 @@
         }, 500); // match the fadeInZoom animation time
         }, 1000); // allow the loader to fade out smoothly
         }, 3000); // loader duration
-      }
-
-      function transitionToPage(href) {
-        document.body.classList.add('fade-out');
-        setTimeout(() => {
-          window.location.href = href;
-        }, 500);
       }
     
   </script>
