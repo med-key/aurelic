@@ -70,6 +70,17 @@
       transform: scale(1.05);
     }
 
+    .profile-photo {
+      background-image: url('../assets/profile.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .profile-photo:hover {
+      background-image: url('../assets/profile-hover.jpg');
+      cursor: pointer;
+    }
+
     .coffee-bubble {
       position: absolute;
       bottom: -20px;
@@ -219,10 +230,9 @@
   <section class="section intro reveal">
     <div class="profile-container">
       <a href="https://ko-fi.com/aurelic" target="_blank">
-      <img class="profile-pic" src="../assets/profile.jpg" alt="My Photo" 
-       onmouseover="this.src='../assets/profile-hover.jpg';" 
-       onmouseout="this.src='../assets/profile.jpg';" />
+  <div class="profile-pic profile-photo"></div>
 </a>
+
       <div class="coffee-bubble">Buy me a matcha 🍵?</div>
     </div>
     <div class="name">Aurelic</div>
