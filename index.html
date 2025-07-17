@@ -25,6 +25,12 @@
       background: #000;
       overflow: hidden;
       font-family: 'Poppins', sans-serif;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+
+    body.fade-out {
+      opacity: 0;
     }
 
     /* Ball Background Effect */
@@ -287,8 +293,10 @@
   <div class="logo" id="logoText">Aurelic</div>
 
  <div class="card-container" id="menuCards">
-  <div class="menu-card">
-    <a href="pages/portfolio.html">Portfolio</a>
+  <div class="menu-card" onclick="transitionToPage('pages/portfolio.html')">
+  Portfolio
+</div>
+
   </div>
   <div class="menu-card">
     <a href="pages/store.html">Store</a>
@@ -426,10 +434,17 @@
 
       setTimeout(() => {
         requestAnimationFrame(animate); // now start animating the balls
-      }, 500); // match the fadeInZoom animation time
-    }, 1000); // allow the loader to fade out smoothly
-  }, 3000); // loader duration
+        }, 500); // match the fadeInZoom animation time
+        }, 1000); // allow the loader to fade out smoothly
+        }, 3000); // loader duration
+      }
 
+      function transitionToPage(href) {
+        document.body.classList.add('fade-out');
+        setTimeout(() => {
+          window.location.href = href;
+        }, 500);
+      }
     
   </script>
 </body>
