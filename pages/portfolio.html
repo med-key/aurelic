@@ -213,6 +213,7 @@
     .contact-button {
       display: inline-block;
       padding: 0.8rem 2rem;
+      margin-bottom: 2rem; /* Add this line */
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255,255,255,0.2);
       border-radius: 0.5rem;
@@ -262,8 +263,10 @@
       justify-content: center;
       gap: 14px;
       margin-top: 12px;
+      margin-bottom: 4rem; 
       filter: brightness(0) invert(1);
     }
+
 
     .social-icon {
       width: 20px;
@@ -276,6 +279,12 @@
       transform: scale(1.1);
       opacity: 1;
     }
+
+    .social-icon.behance {
+  width: 28px; 
+  height: 28px;
+}
+
 
   </style>
 </head>
@@ -335,7 +344,7 @@
     <img src="../assets/linkedin.png" alt="LinkedIn" class="social-icon" />
   </a>
   <a href="https://www.behance.net/kamiliashaffa1" target="_blank">
-    <img src="../assets/behance.svg" alt="Behance" class="social-icon" />
+    <img src="../assets/behance.svg" alt="Behance" class="social-icon behance" />
   </a>
 </div>
 
