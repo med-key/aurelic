@@ -420,14 +420,6 @@
       }
       requestAnimationFrame(animate);
     }
-
-    function transitionToPage(href) {
-        document.body.classList.add('fade-out');
-        setTimeout(() => {
-          window.location.href = href;
-        }, 500);
-      }
-    
       setTimeout(() => {
         const loader = document.getElementById('loader');
         loader.style.transition = 'opacity 1s ease';
