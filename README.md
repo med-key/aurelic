@@ -42,7 +42,7 @@ git clone https://github.com/med-key/aurelic
 
 Inspired by this work? Feel free to reach out—collaboration is always welcome.
 
-📮 **Contact**: [kamiliashaffa@gmail.com](mailto:kamiliashaffa@gmail.com)
+📮 **Contact**: [aurelic.design@gmail.com](mailto:aurelic.design@gmail.com)
 
 ---
 
