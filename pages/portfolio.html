@@ -21,18 +21,17 @@
       scroll-behavior: smooth;
       overflow-x: hidden;
     }
-    
+
     body {
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
-    
+
     body.fade-in {
       opacity: 1;
       transform: translateY(0);
     }
-
 
     a {
       color: inherit;
@@ -60,7 +59,7 @@
       width: 360px;
       height: 360px;
       object-fit: cover;
-      border-radius: 1rem; /* square with rounded corners */
+      border-radius: 1rem;
       border: 3px solid rgba(255,255,255,0.2);
       box-shadow: 0 8px 30px rgba(255, 255, 255, 0.1);
       transition: all 0.4s ease;
@@ -93,7 +92,6 @@
       opacity: 1;
       transform: translateY(-10px);
     }
-
 
     .name {
       font-size: 3rem;
@@ -199,7 +197,18 @@
     .back-button:hover {
       background: rgba(255,255,255,0.2);
     }
-    
+
+    /* === Reveal Animation === */
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body>
@@ -207,11 +216,11 @@
   <a href="../index.html" class="back-button">&larr; Return</a>
 
   <!-- Intro Section -->
-   <section class="section intro">
+  <section class="section intro reveal">
     <div class="profile-container">
       <a href="https://ko-fi.com/aurelic" target="_blank">
-  <img class="profile-pic" src="../assets/profile.jpg" alt="My Photo" />
-</a>
+        <img class="profile-pic" src="../assets/Profile.jpg" alt="My Photo" />
+      </a>
       <div class="coffee-bubble">Buy me a matcha 🍵?</div>
     </div>
     <div class="name">Aurelic</div>
@@ -221,34 +230,46 @@
   </section>
 
   <!-- Portfolio Section -->
-  <section class="section">
+  <section class="section reveal">
     <div class="header">Portfolio</div>
     <div class="subtext">Selected works and experiments</div>
     <div class="portfolio-grid">
-      <div class="project-card">
+      <div class="project-card reveal">
         <div class="project-title">Project One</div>
         <div class="project-desc">A short description about this project, what it is, or what tools were used.</div>
       </div>
-      <div class="project-card">
+      <div class="project-card reveal">
         <div class="project-title">Project Two</div>
         <div class="project-desc">Another creative piece. You can describe it and link to a demo or repo if needed.</div>
       </div>
-      <!-- Add more cards here -->
     </div>
   </section>
 
   <!-- Get in Touch Section -->
-  <section class="section get-in-touch">
+  <section class="section get-in-touch reveal">
     <div class="header">Get in Touch</div>
     <div class="touch-text">Want to collaborate or just say hello?</div>
-    <a href="aurelic.design@gmail.com" class="contact-button">Say Hello 👋</a>
+    <a href="mailto:aurelic.design@gmail.com" class="contact-button">Say Hello 👋</a>
   </section>
 
   <script>
-  window.addEventListener('DOMContentLoaded', () => {
-    document.body.classList.add('fade-in');
-  });
-</script>
+    window.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('fade-in');
 
+      const reveals = document.querySelectorAll('.reveal');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          } else {
+            entry.target.classList.remove('active');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      reveals.forEach(el => observer.observe(el));
+    });
+  </script>
 </body>
 </html>
