@@ -44,79 +44,115 @@
       margin: auto;
     }
 
-    .intro {
-      text-align: center;
-      padding-top: 4rem;
-    }
+    .about-section {
+  padding: 6rem 2rem 4rem;
+}
 
-    .profile-container {
-      position: relative;
-      display: inline-block;
-      margin: 1.5rem auto;
-    }
+.about-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
 
-    .profile-pic {
-      width: 360px;
-      height: 360px;
-      object-fit: cover;
-      border-radius: 1rem;
-      border: 3px solid rgba(255,255,255,0.2);
-      box-shadow: 0 8px 30px rgba(255, 255, 255, 0.1);
-      transition: all 0.4s ease;
-    }
+.about-text {
+  flex: 1 1 500px;
+  text-align: left;
+}
 
-    .profile-pic:hover {
-      border-radius: 2rem;
-      transform: scale(1.05);
-    }
+.name {
+  font-size: 2.8rem;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  margin-bottom: 1rem;
+}
 
-    .profile-photo {
-      background-image: url('../assets/profile.JPEG');
-      background-size: cover;
-      background-position: center;
-    }
-    
-    .profile-photo:hover {
-      background-image: url('../assets/profile-hover.JPEG');
-      cursor: pointer;
-    }
+.about {
+  font-size: 1.2rem;
+  font-family: "Poppins", sans-serif;
+  color: #dcdcdc;
+  line-height: 1.8;
+}
 
-    .coffee-bubble {
-      position: absolute;
-      bottom: -20px;
-      right: -10px;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      padding: 1rem 1.5rem;
-      font-size: 1rem;
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.2);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      color: white;
-      white-space: nowrap;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    }
+.profile-container {
+  position: relative;
+  flex: 1 1 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    .profile-container:hover .coffee-bubble {
-      opacity: 1;
-      transform: translateY(-10px);
-    }
+.profile-pic {
+  width: 320px;
+  height: 320px;
+  border-radius: 1.2rem;
+  object-fit: cover;
+  transition: all 0.4s ease;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 40px rgba(255, 255, 255, 0.1);
+}
 
-    .name {
-      font-size: 3rem;
-      margin-top: 1rem;
-    }
+.profile-pic:hover {
+  transform: scale(1.05);
+  border-radius: 2rem;
+}
 
-    .about {
-      font-size: 1rem;
-      opacity: 0.7;
-      max-width: 700px;
-      margin: 1rem auto 0;
-      line-height: 1.6;
-      text-align: center;
-    }
+.coffee-bubble {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  color: white;
+  white-space: nowrap;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.profile-container:hover .coffee-bubble {
+  opacity: 1;
+  transform: translateY(-10px);
+}
+
+.coffee-bubble.bottom-right {
+  bottom: -20px;
+  right: -10px;
+}
+
+.coffee-bubble.top-left {
+  top: 40px;
+  left: -10px;
+}
+
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-text {
+    text-align: center;
+  }
+
+  .coffee-bubble.top-left {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .coffee-bubble.bottom-right {
+    right: 50%;
+    transform: translateX(50%);
+  }
+}
+
 
     .header {
       text-align: center;
@@ -248,19 +284,27 @@
   <a href="../index.html" class="back-button">&larr; Return</a>
 
   <!-- Intro Section -->
-  <section class="section intro reveal">
+  <section class="section about-section">
+  <div class="about-content">
+    <!-- Left side: Intro Text -->
+    <div class="about-text">
+      <div class="name">Aurelic</div>
+      <div class="about">
+        I'm a frontend engineer driven by a deep love for design and technology — turning ideas into real-life digital experiences is my calling.
+      </div>
+    </div>
+
+    <!-- Right side: Profile Picture -->
     <div class="profile-container">
       <a href="https://ko-fi.com/aurelic" target="_blank">
-  <div class="profile-pic profile-photo"></div>
-</a>
+        <img class="profile-pic" src="../assets/Profile.jpg" alt="My Photo" />
+      </a>
+      <div class="coffee-bubble bottom-right">Buy me a matcha 🍵?</div>
+      <div class="coffee-bubble top-left">Let’s collaborate 🎨</div>
+    </div>
+  </div>
+</section>
 
-      <div class="coffee-bubble">Buy me a matcha 🍵?</div>
-    </div>
-    <div class="name">Aurelic</div>
-    <div class="about">
-      Hello! I'm a frontend engineer driven by a deep love for design and technology — translating ideas into seamless, interactive stories.
-    </div>
-  </section>
 
   <!-- Portfolio Section -->
   <section class="section reveal">
