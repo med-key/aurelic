@@ -266,15 +266,18 @@
       border: 1px solid rgba(255,255,255,0.2);
       transition: all 0.3s ease;
       z-index: 10;
-      animation: fadeIn 1.5s ease forwards;
-      animation-delay: 3s;
+      animation: fadeSlideIn 1s ease forwards;
+      animation-delay: 3.2s;
     }
-
+    
     .back-button:hover {
       background: rgba(255,255,255,0.2);
     }
 
-    /* === Reveal Animation === */
+    @keyframes fadeSlideIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .reveal {
       opacity: 0;
       transform: translateY(50px);
@@ -337,7 +340,6 @@
       }
     }
     
-    /* Header Styles */
     .top-header {
       position: fixed;
       top: 2rem;
@@ -362,17 +364,19 @@
       font-size: 1rem;
     }
 
-    .intro {
+     .intro {
       display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
       align-items: center;
+      justify-content: center;
+      flex-direction: column;
       height: 100vh;
       background: #000;
+      background-size: 200% 200%;
+      animation: gradientMove 4s ease infinite;
       color: #fff;
-      text-align: center;
       position: relative;
-      padding-top: 35vh;
+      text-align: center;
+      padding-top: -10px;
     }
 
     .intro h1 {
