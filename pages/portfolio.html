@@ -369,14 +369,15 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      height: 100vh;
+      height: 110vh;
       background: #000;
       background-size: 200% 200%;
       animation: gradientMove 4s ease infinite;
       color: #fff;
       position: relative;
       text-align: center;
-      padding-top: -20px;
+      transform: translateY(-100px);
+      margin-inline: 4rem;
     }
 
     .intro h1 {
@@ -424,6 +425,21 @@
       50% { transform: translateY(10px); }
     }
 
+    .section {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .section.exiting {
+      opacity: 0;
+      transform: translateY(-40px);
+    }
 
   </style>
 </head>
@@ -511,6 +527,29 @@
 
       reveals.forEach(el => observer.observe(el));
     });
+
+/***/
+  window.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.add('fade-in');
+
+    const sections = document.querySelectorAll('.section');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // section enters viewport
+          entry.target.classList.add('visible');
+          entry.target.classList.remove('exiting');
+        } else {
+          // section leaves viewport
+          entry.target.classList.remove('visible');
+          entry.target.classList.add('exiting');
+        }
+      });
+    }, { threshold: 0.3 }); // adjust how much is visible before trigger
+
+    sections.forEach(section => observer.observe(section));
+  });
   </script>
 </body>
 </html>
